@@ -32,6 +32,8 @@ public class App {
                     break;
                 }
                 case 2: {
+                    if(patients.isEmpty())
+                        System.out.println("Database is Empty, please add a patient");
                     viewPatients(patients);
                     break;
 
