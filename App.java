@@ -8,7 +8,7 @@ public class App {
     public static void main(String[] args) {
         System.out.println("BMI Manager");
 
-        Patient patient = new Patient();
+        Patients patients = new Patients(10);
 
         running:
         while (true) {
@@ -24,11 +24,15 @@ public class App {
 
             switch (choice) {
                 case 1: {
-                    addPatient(patient, scanner);
+                    if (patients.isFull()) {
+                        System.out.println("Database is full");
+                    }else {
+                        patients.add(createPatient(scanner));
+                    }
                     break;
                 }
                 case 2: {
-                    viewPatient(patient);
+                    viewPatients(patients);
                     break;
 
                 }
@@ -39,21 +43,22 @@ public class App {
 
             }
         }
-    }private static void viewPatient(Patient patient) {
-        String message = String.format("Name: %s Age: %d BMI: %.2f",
-                patient.getName(), patient.getAge(), patient.getBMI());
-        System.out.println(message);
-
+    }private static void viewPatients(Patients patients) {
+        for (int i = 0; i < patients.count(); ++i) {
+            Patient patient = patients.get(i);
+            String message = String.format("Name: %s Age: %d BMI: %.2f",
+                    patient.getName(), patient.getAge(), patient.getBMI());
+            System.out.println(message);
+        }
     }
-    private static void addPatient(Patient patient, Scanner scanner){
+    private static Patient createPatient(Scanner scanner){
 
         System.out.println("Enter patient's name: ");
         String name = scanner.nextLine();
-        patient.setName(name);
 
         System.out.println("Enter patient's age: ");
         int age = scanner.nextInt();
-        patient.setAge(age);
+
 
         System.out.println("Enter patients weight (kg): ");
         double weight = scanner.nextDouble();
@@ -61,7 +66,7 @@ public class App {
         System.out.print("Enter height (m): ");
         double height = scanner.nextDouble();
 
-        patient.setDetails(height, weight);
+        return new Patient(name, age, height, weight);
 
     }
 }
