@@ -16,7 +16,8 @@ public class App {
                     "\t1. Add new patient\n" +
                     "\t2. View patients\n" +
                     "\t3. Update patient\n"+
-                    "\t3. Exit\n");
+                    "\t4. Remove patient\n"+
+                    "\t5. Exit\n");
 
             System.out.print("Enter choice: ");
             Scanner scanner = new Scanner(System.in);
