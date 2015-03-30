@@ -14,10 +14,11 @@ public class App {
         while (true) {
             System.out.println("Please select from the " + "following menu options:\n" +
                     "\t1. Add new patient\n" +
-                    "\t2. View patient\n" +
+                    "\t2. View patients\n" +
+                    "\t3. Update patient\n"+
                     "\t3. Exit\n");
 
-            System.out.println("Enter choice: ");
+            System.out.print("Enter choice: ");
             Scanner scanner = new Scanner(System.in);
             int choice = scanner.nextInt();
             scanner.nextLine();
@@ -34,6 +35,11 @@ public class App {
 
                 }
                 case 3: {
+                        updatePatient(patients, scanner);
+                        break;
+                }
+
+                case 4: {
                     System.out.println("Good bye! ");
                     break running;
                 }
@@ -66,5 +72,27 @@ public class App {
 
         return new Patient(name, age, height, weight);
 
+    }
+    private static void updatePatient(Patients patients, Scanner scanner){
+        System.out.print("Enter name: ");
+        String name = scanner.nextLine();
+        for (Patient patient: patients.records) {
+            if (patient.getName().equals(name)) {
+                System.out.print("Enter new Age: ");
+                int age = scanner.nextInt();
+                System.out.print("Enter new height: ");
+                double height = scanner.nextDouble();
+                System.out.print("Enter new weight: ");
+                double weight = scanner.nextDouble();
+
+                patient.setAge(age);
+                patient.setHeight(height);
+                patient.setWeight(weight);
+
+                break;
+
+            }
+
+        }
     }
 }
