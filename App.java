@@ -62,11 +62,11 @@ public class App {
     }
     private static Patient createPatient(Scanner scanner){
 
-        System.out.println("Enter patient's name: "); String name = scanner.nextLine();
+        System.out.print("Enter patient's name: "); String name = scanner.nextLine();
 
-        System.out.println("Enter patient's age: "); int age = scanner.nextInt();
+        System.out.print("Enter patient's age: "); int age = scanner.nextInt();
 
-        System.out.println("Enter patients weight (kg): "); double weight = scanner.nextDouble();
+        System.out.print("Enter patients weight (kg): "); double weight = scanner.nextDouble();
 
         System.out.print("Enter height (m): "); double height = scanner.nextDouble();
 
