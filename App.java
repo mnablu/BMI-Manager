@@ -8,7 +8,7 @@ public class App {
     public static void main(String[] args) {
         System.out.println("BMI Manager");
 
-        Patients patients = new Patients(10);
+        Patients patients = new Patients();
 
         running:
         while (true) {
@@ -23,14 +23,9 @@ public class App {
             scanner.nextLine();
 
             switch (choice) {
-                case 1: {
-                    if (patients.isFull()) {
-                        System.out.println("Database is full");
-                    }else {
-                        patients.add(createPatient(scanner));
-                    }
+                case 1: {patients.add(createPatient(scanner));
                     break;
-                }
+            }
                 case 2: {
                     if(patients.isEmpty())
                         System.out.println("Database is Empty, please add a patient");
@@ -45,7 +40,8 @@ public class App {
 
             }
         }
-    }private static void viewPatients(Patients patients) {
+    }
+    private static void viewPatients(Patients patients) {
         for (int i = 0; i < patients.count(); ++i) {
             Patient patient = patients.get(i);
             String message = String.format("Name: %s Age: %d BMI: %.2f",
